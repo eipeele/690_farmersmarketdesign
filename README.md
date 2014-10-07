@@ -38,3 +38,11 @@ Done in fulfillment of assignment 3 for INLS 690.
   *results*:  May appear in ol class.  Describes type of list.
   
   *resultone*, *resulttwo*, *resultthree*:  May appear in li class.  Orders search result data.
+
+#Rel Attributes:
+
+  *index*:  Used to describe the outbound link as one leading to a listing of items.
+  
+  *create-form*:  Used to describe the outbound link as one leading to a form in which information will be inputted.
+  
+  *anchor*:  Used to describe the outbound link as one leading to a hashed anchor tag within another page.
