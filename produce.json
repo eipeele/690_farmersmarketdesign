@@ -1,1 +1,30 @@
-Put work for produce.json here.
+{ "apga01" :
+  { "product" : "Gala Apple",
+    "description" : "sweet, great snacking",
+    "farmer" : "Farmer Brown",
+    "amount" : "3 bushels",
+    "price": "$2.50"
+  },
+  "aphc02":
+  { "product" : "Honeycrisp Apples",
+    "description" : "sweet, great for pies and cider",
+    "farmer" : "Farmer Joe",
+    "amount" : "5 bushels",
+    "price": "$3.50"
+  },
+  "bs0001":
+  { "product" : "Butternut Squash",
+    "description" : "very ripe, perfect for soups",
+    "farmer" : "Farmer Linda",
+    "amount" : 100,
+    "price" : "$2.75"
+  },
+  "as0002":
+  { "product" : "Acorn Squash",
+    "description" : "perfect for this holiday",
+    "farmer" : "Farmer Brown",
+    "amount" : 75,
+    "price" : "$3.00"
+  },
+}
+
