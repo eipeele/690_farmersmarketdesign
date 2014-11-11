@@ -1,1 +1,22 @@
-Create new json file here.
+{ "012345" :
+  { "farmer" : "Johnny Appleseed",
+    "description" : "Carrboro's Finest",
+    "from" : "appleseedcast@me.com",
+    "time" : "2014-10-13T12:00:4",
+    "categories": fruit
+  },
+  "123456":
+  { "farmer" : "Farmer Brown",
+    "description" : "Ripe and Tasty",
+    "from" : "brownisthenew@gmail.com",
+    "time" : "2014-10-13T12:00:4",
+    "categories": fruit, legume
+  },
+  "234567":
+  { "farmer" : "Old McDonald",
+    "description" : "E-Eye...Oh...",
+    "from" : "eieio@hotmail.com",
+    "time" : "2014-10-13T12:00:4",
+    "categories": fruit, vegetable
+  }
+}
