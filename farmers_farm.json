@@ -1,0 +1,29 @@
+{ "frmr001" :
+  { "farmer_name" : "Joe Brown",
+    "farm_name" : "Brown Acres",
+    "location" : "Kernersville",
+    "age" : "47",
+    "specialization" : "Legumes",
+  },
+  "frmr002":
+  { "farmer_name" : "Dan Smith",
+    "farm_name" : "Smithfields",
+    "location" : "Huntersville",
+    "age" : "38",
+    "specialization" : "Fruits",
+  },
+  "frmr003":
+  { "farmer_name" : "Brian Greene",
+    "farm_name" : "Greene's Great Lands"
+    "location" : "Oak Ridge",
+    "age" : "20",
+    "specialization" : "Leafy Greens",
+  },
+  "frmr004":
+  { "farmer_name" : "Billy Robertson",
+    "farm_name" : "Roberts House of Goats"
+    "location" : "Asheboro",
+    "age" : "67",
+    "specialization" : "Potatoes",
+  },
+}
