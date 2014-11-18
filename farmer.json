@@ -1,9 +1,9 @@
 { 
-"farm" : "frmr0001"
-  {"farmName" : "Joe Brown",
-  "farm" : "age 47",
-  "farm" : "hasFarm",
-  "farm" : "farm0001",
+"farmer" : "frmr0001",
+  {"farmerName" : "Joe Brown",
+  "farmer" : "age 47",
+  "farmer" : "hasFarm",
+  "farmer" : "farm0001",
 "farm" : "farm0001",
   "farmLocation" : "Kernersville",
   "farmName" : "Brown Acres",
