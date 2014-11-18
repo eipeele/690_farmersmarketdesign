@@ -1,0 +1,37 @@
+{ 
+farm:frmr0001
+  {farm:name "Joe Brown";
+  farm:age 47.
+  farm:hasFarm farm_name farm:farm0001.
+farm:farm0001
+  farm:location "Kernersville";
+  farm:name "Brown Acres".
+},  
+{
+farm:frmr0002
+  {farm:name "Dan Smith";
+  farm:age 38.
+  farm:hasFarm farm_name farm:farm0002.
+farm:farm0002
+  farm:location "Huntersville";
+  farm:name "Smithfields".
+  },
+{
+farm:frmr0003
+  {farm:name "Brian Greene";
+  farm:age 20.
+  farm:hasFarm farm_name farm:farm0003.
+farm:farm0003
+  farm:location "Oak Ridge";
+  farm:name "Greene's Great Lands".
+ }, 
+{
+farm:frmr0004
+  {farm:name "Billy Robertson";
+  farm:age 67.
+  farm:hasFarm farm_name farm:farm0004.
+farm:farm0004
+  farm:location "Asheboro";
+  farm:name "Billy's House of Goats".
+	}
+}
