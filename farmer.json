@@ -35,13 +35,4 @@ farm:farm0004
   farm:name "Billy's House of Goats".
 	}
 }
-  },
-}
 
-farm:frmr0001
-  farm:name "Joe Brown";
-  farm:age 47.
-  farm:hasFarm farm_name farm:farm001.
-farm:farm001
-  farm:location "Kernersville";
-  farm:name "Brown Acres".
