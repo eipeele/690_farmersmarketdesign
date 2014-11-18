@@ -24,7 +24,18 @@ farm:frmr0003
 farm:farm0003
   farm:location "Oak Ridge";
   farm:name "Greene's Great Lands".
- }, 
+ }
+, 
+{
+farm:frmr0004
+  {farm:name "Billy Robertson";
+  farm:age 67.
+  farm:hasFarm farm_name farm:farm0004.
+farm:farm0004
+  farm:location "Asheboro";
+  farm:name "Billy's House of Goats".
+	}
+}
 {
 farm:frmr0004
   {farm:name "Billy Robertson";
