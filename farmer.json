@@ -1,30 +1,40 @@
-{ "frmr001" :
-  { "farmer_name" : "Joe Brown",
-    "farm_name" : "Brown Acres",
-    "location" : "Kernersville",
-    "age" : "47",
-    "specialization" : "Legumes",
+{ 
+farm:frmr0001
+  {farm:name "Joe Brown";
+  farm:age 47.
+  farm:hasFarm farm_name farm:farm0001.
+farm:farm0001
+  farm:location "Kernersville";
+  farm:name "Brown Acres".
+},  
+{
+farm:frmr0002
+  {farm:name "Dan Smith";
+  farm:age 38.
+  farm:hasFarm farm_name farm:farm0002.
+farm:farm0002
+  farm:location "Huntersville";
+  farm:name "Smithfields".
   },
-  "frmr002":
-  { "farmer_name" : "Dan Smith",
-    "farm_name" : "Smithfields",
-    "location" : "Huntersville",
-    "age" : "38",
-    "specialization" : "Fruits",
-  },
-  "frmr003":
-  { "farmer_name" : "Brian Greene",
-    "farm_name" : "Greene's Great Lands"
-    "location" : "Oak Ridge",
-    "age" : "20",
-    "specialization" : "Leafy Greens",
-  },
-  "frmr004":
-  { "farmer_name" : "Billy Robertson",
-    "farm_name" : "Roberts House of Goats"
-    "location" : "Asheboro",
-    "age" : "67",
-    "specialization" : "Potatoes",
+{
+farm:frmr0003
+  {farm:name "Brian Greene";
+  farm:age 20.
+  farm:hasFarm farm_name farm:farm0003.
+farm:farm0003
+  farm:location "Oak Ridge";
+  farm:name "Greene's Great Lands".
+ }, 
+{
+farm:frmr0004
+  {farm:name "Billy Robertson";
+  farm:age 67.
+  farm:hasFarm farm_name farm:farm0004.
+farm:farm0004
+  farm:location "Asheboro";
+  farm:name "Billy's House of Goats".
+	}
+}
   },
 }
 
