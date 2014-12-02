@@ -1,12 +1,22 @@
 { 
 "farmer" : "frmr0001"
   {"farmerName" : "Joe Brown",
-  "farmer" : "age 47",
   "farmer" : "hasFarm",
   "farmer" : "farm0001",
 "farm" : "farm0001",
   "farmLocation" : "Kernersville",
-  "farmName" : "Brown Acres",
+  "farmName" : "Brown Acres Farm",
+"event" : "event0001"
+  ""
+  
+  "farmLocation": {
+    "street_address": { "type": "string" },
+    "city":           { "type": "string" },
+    "state":          { "type": "string" }
+  },
+  "required": ["street_address", "city", "state"]
+}
+
 }, 
 
 <!DOCTYPE HTML>
