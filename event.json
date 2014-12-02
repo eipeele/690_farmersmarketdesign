@@ -1,56 +1,8 @@
+{
+    "event0001": {
+        "name": "Walk for Dysentary",
+        "startDate": "2015-02-20T10:00",
+        "organizer": "Farmer's Market",
+ }, 
 
-
-<div resource="event0001"
-vocab="http://schema.org/"
-typeof="event">
-<span property="name">Walk for Dysentary</span>
-<meta property="startDate" content="2015-02-20T10:00">
-February 20, 2015
-10:00 am
-<span property="organizer">Farmer's Market</span>
-
-
-<span property="offers">10% Off All Items!</span>
-<span property="itemCondition">Organic & Non-Organic</span>
-<span property="image">FarmFest.jpg</span>
-
-</div>
-<div property="location" typeof="Place">
-</div>
-</body>
-</html>
-
-
-
-
-
-{ "apga01" :
-  { "product" : "Gala Apple",
-    "description" : "sweet, great snacking",
-    "farmer" : "Farmer Brown",
-    "amount" : "3 bushels",
-    "price": "$2.50"
-  },
-  "aphc02":
-  { "product" : "Honeycrisp Apples",
-    "description" : "sweet, great for pies and cider",
-    "farmer" : "Farmer Joe",
-    "amount" : "5 bushels",
-    "price": "$3.50"
-  },
-  "bs0001":
-  { "product" : "Butternut Squash",
-    "description" : "very ripe, perfect for soups",
-    "farmer" : "Farmer Linda",
-    "amount" : 100,
-    "price" : "$2.75"
-  },
-  "as0002":
-  { "product" : "Acorn Squash",
-    "description" : "perfect for this holiday",
-    "farmer" : "Farmer Brown",
-    "amount" : 75,
-    "price" : "$3.00"
-  }
-}
 
