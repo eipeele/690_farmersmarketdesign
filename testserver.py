@@ -7,7 +7,7 @@ import random
 from datetime import datetime
 
 # define our priority levels
-PRIORITIES = ( 'closed', 'low', 'normal', 'high' )
+#PRIORITIES = ( 'closed', 'low', 'normal', 'high' )
 
 # load help requests data from disk
 with open('data.json') as data:
@@ -29,27 +29,32 @@ def error_if_farmer_not_found(farmer_id):
         message = "Help farmer {} doesn't exist".format(farmer_id)    
         abort(404, message=message)
 
-def filter_and_sort_farmer(q='', sort_by='name'):
-    filter_function = lambda x: q.lower() in (
+def filter_and_sort_farmers(q='', sort_by='time'):
+   filter_function = lambda x: q.lower() in (
         x[1]['jobTitle'] + x[1]['worksFor']).lower()
-    filtered_farmer = filter(filter_function,
-                                   data["farmer"].items())
-    key_function = lambda x: x[1][sort_by]
-    return sorted(filtered_farmer, key=key_function, reverse=True)
+   filtered_farmer = filter(filter_function,
+                                  data["farmers"].items())
+   key_function = lambda x: x[1][sort_by]
+   return sorted(filtered_farmer, key=key_function, reverse=True)
 
-def filter_and_sort_produce(q='', sort_by='name'):
-    filter_function = lambda x: q.lower() in (
-        x[1]['releaseDate'] + x[1]['itemCondidtion']).lower()
-    filtered_produce = filter(filter_function,
-                                   data["produce"].items())
-    key_function = lambda x: x[1][sort_by]
-    return sorted(filtered_produce, key=key_function, reverse=True)
+#def filter_and_sort_produce(q='', sort_by='name'):
+ #   filter_function = lambda x: q.lower() in (
+  #      x[1]['releaseDate'] + x[1]['itemCondidtion']).lower()
+   # filtered_produce = filter(filter_function,
+    #                               data["produce"].items())
+    #key_function = lambda x: x[1][sort_by]
+    #return sorted(filtered_produce, key=key_function, reverse=True)
         
 def render_farmer_as_html(farmer):
    return render_template(
-       'farmer.html',
+       'data.html',
         farmer=farmer)
         #priorities=reversed(list(enumerate(PRIORITIES))))
+
+def render_farmer_list_as_html(farmers):
+    return render_template(
+        'data.html',
+        farmers=farmers)
     
 #def render_produce_as_html(produce):
  #  return render_template(
@@ -145,33 +150,33 @@ class Produce(Resource):
         return make_response(
             render_produce_as_html(produce), 200)
 
-#class HelpRequestAsJSON(Resource):
- #   def get(self, helprequest_id):
-  #      error_if_helprequest_not_found(helprequest_id)
-   #     helprequest = data["helprequests"][helprequest_id]
-    #    helprequest["@context"] = data["@context"]
-     #   return helprequest
+class FarmerAsJSON(Resource):
+    def get(self, farmer_id):
+        error_if_farmer_not_found(farmer_id)
+        farmer = data["farmers"][farmer_id]
+        #farmer["@context"] = data["@context"]
+        return farmer
     
 class FarmerList(Resource):
     def get(self):
         query = query_parser.parse_args()
         return make_response(
             render_farmer_list_as_html(
-                filter_and_sort_farmer(
-                    q=query['q'], sort_by=query['sort-by'])), 200)
+                filter_and_sort_farmers(
+                   q=query['q'], sort_by=query['sort-by'])), 200)
 
     def post(self):
         farmer = new_farmer_parser.parse_args()
-        farmer['name'] = name
+        farmer['time'] = datetime.isoformat(datetime.now())
         farmer['worksFor'] = worksFor
         farmer[generate_id()] = farmer
         return make_response(
             render_farmer_list_as_html(
                 filter_and_sort_farmer()), 201)
 
-#class HelpRequestListAsJSON(Resource):
- #   def get(self):
-  #      return data
+class FarmerListAsJSON(Resource):
+    def get(self):
+        return data
 
 #
 # assign URL paths to our resources
@@ -180,10 +185,10 @@ app = Flask(__name__)
 api = Api(app)
 api.add_resource(FarmerList, '/farmers')
 #api.add_resource(ProduceList, '/produce')
-#api.add_resource(HelpRequestListAsJSON, '/requests.json')
+api.add_resource(FarmerListAsJSON, '/farmers.json')
 api.add_resource(Farmer, '/farmer/<string:farmer_id>')
 api.add_resource(Produce, '/produce/<string:produce_id>')
-#api.add_resource(HelpRequestAsJSON, '/request/<string:helprequest_id>.json')
+api.add_resource(FarmerAsJSON, '/request/<string:farmer_id>.json')
 
 # start the server
 if __name__ == '__main__':
