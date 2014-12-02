@@ -1,21 +1,21 @@
 { 
 "farmer" : "frmr0001"
-  {"farmerName" : "Joe Brown",
-  "farmer" : "hasFarm",
-  "farmer" : "farm0001",
+  {"name" : "Joe Brown",
+  "jobTitle" : "Farmer",
+  "worksFor" : "farm0001",
 "farm" : "farm0001",
-  "farmLocation" : "Kernersville",
+  "farmLocation": {
+    "street_address": { "type=string" : "100 Produce Avenue"},
+    "city":           { "type=string" : "Kernersville" },
+    "state":          { "type=string" : "NC"}
+  },
+  "required": ["street_address", "city", "state"]
+}
   "farmName" : "Brown Acres Farm",
 "event" : "event0001"
   ""
   
-  "farmLocation": {
-    "street_address": { "type": "string" },
-    "city":           { "type": "string" },
-    "state":          { "type": "string" }
-  },
-  "required": ["street_address", "city", "state"]
-}
+  
 
 }, 
 
@@ -30,7 +30,6 @@
 		     typeof="Person">
 		<span property="name">Joe Brown</span>
 		<span property="jobTitle">Farmer</span>
-		<span property="birthDate">1967-01-01</span>
 		<span property="worksFor">Brown Acres Farm</span>
 		</div>
 
