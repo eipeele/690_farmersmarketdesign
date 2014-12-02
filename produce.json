@@ -1,30 +1,21 @@
-{ "apga01" :
-  { "product" : "Gala Apple",
-    "description" : "sweet, great snacking",
-    "farmer" : "Farmer Brown",
-    "amount" : "3 bushels",
-    "price": "$2.50"
-  },
-  "aphc02":
-  { "product" : "Honeycrisp Apples",
-    "description" : "sweet, great for pies and cider",
-    "farmer" : "Farmer Joe",
-    "amount" : "5 bushels",
-    "price": "$3.50"
-  },
-  "bs0001":
-  { "product" : "Butternut Squash",
-    "description" : "very ripe, perfect for soups",
-    "farmer" : "Farmer Linda",
-    "amount" : 100,
-    "price" : "$2.75"
-  },
-  "as0002":
-  { "product" : "Acorn Squash",
-    "description" : "perfect for this holiday",
-    "farmer" : "Farmer Brown",
-    "amount" : 75,
-    "price" : "$3.00"
-  }
-}
+{
+    "item0001": {
+        "name": "Granny Smith Apple",
+        "offers": "$10.00/box",
+        "releaseDate": "2014-01-01",
+        "itemCondition": "Organic",
+        "sale": "no",
+    "item0002": {
+        "name": "Red Fiji Apple",
+        "offers": "$9.00/box",
+        "releaseDate": "2014-03-01",
+        "itemCondition": "Not-Organic",
+        "sale": "yes",
+    "item0003": {
+        "name": "Vidalia Sweet Onion",
+        "offers": "$4.00/bag",
+        "releaseDate": "2014-02-01",
+        "itemCondition": "Not-Organic",
+        "sale": "yes",
+}, 
 
