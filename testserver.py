@@ -29,11 +29,11 @@ def error_if_farmer_not_found(farmer_id):
         message = "Help farmer {} doesn't exist".format(farmer_id)    
         abort(404, message=message)
 
-def filter_and_sort_farmers(q='', sort_by='time'):
+def filter_and_sort_farmers(q='', sort_by='name'):
    filter_function = lambda x: q.lower() in (
         x[1]['jobTitle'] + x[1]['worksFor']).lower()
    filtered_farmer = filter(filter_function,
-                                  data["farmers"].items())
+                                  data["farmer"].items())
    key_function = lambda x: x[1][sort_by]
    return sorted(filtered_farmer, key=key_function, reverse=True)
 
@@ -121,7 +121,7 @@ class Farmer(Resource):
         error_if_farmer_not_found(farmer_id)
         return make_response(
             render_farmer_as_html(
-                data["farmer"][farmer_id]), 200)
+                data['farmer'][farmer_id]), 200)
 
     def patch(self, farmer_id):
         error_if_farmer_not_found(farmer_id)
@@ -138,11 +138,11 @@ class Produce(Resource):
         error_if_produce_not_found(produce_id)
         return make_response(
             render_produce_as_html(
-                data["produce"][produce_id]), 200)
+                data['produce'][produce_id]), 200)
 
     def patch(self, produce_id):
         error_if_produce_not_found(produce_id)
-        produce = data["produce"][produce_id]
+        produce = data['produce'][produce_id]
         update = update_produce_parser.parse_args()
         produce['name'] = update['name']
         if len(update['offers'].strip()) > 0:
@@ -153,7 +153,7 @@ class Produce(Resource):
 class FarmerAsJSON(Resource):
     def get(self, farmer_id):
         error_if_farmer_not_found(farmer_id)
-        farmer = data["farmers"][farmer_id]
+        farmer = data['farmers'][farmer_id]
         #farmer["@context"] = data["@context"]
         return farmer
     
@@ -167,7 +167,7 @@ class FarmerList(Resource):
 
     def post(self):
         farmer = new_farmer_parser.parse_args()
-        farmer['time'] = datetime.isoformat(datetime.now())
+        farmer['name'] = name
         farmer['worksFor'] = worksFor
         farmer[generate_id()] = farmer
         return make_response(
@@ -192,5 +192,5 @@ api.add_resource(FarmerAsJSON, '/request/<string:farmer_id>.json')
 
 # start the server
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5555)
+    app.run(host='0.0.0.0', port=5555, debug=True)
 
