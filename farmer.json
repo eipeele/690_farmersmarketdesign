@@ -1,22 +1,28 @@
-{ 
-"farmer" : "frmr0001"
-  {"name" : "Joe Brown",
-  "jobTitle" : "Farmer",
-  "worksFor" : "farm0001",
-"farm" : "farm0001",
-  "farmLocation": {
-    "street_address": { "type=string" : "100 Produce Avenue"},
-    "city":           { "type=string" : "Kernersville" },
-    "state":          { "type=string" : "NC"}
-  },
-  "required": ["street_address", "city", "state"]
-}
-  "farmName" : "Brown Acres Farm",
-"event" : "event0001"
-  ""
-  
-  
-
+{
+    "frm6ah": {
+        "name": "Joe Brown",
+        "jobTitle": "Farmer",
+        "worksFor": "farm0001",
+        "farm": "farm0001",
+        "farmLocation": {
+            "street_address": {
+                "type=string": "100 Produce Avenue"
+            },
+            "city": {
+                "type=string": "Kernersville"
+            },
+            "state": {
+                "type=string": "NC"
+            }
+        },
+        "required": [
+            "street_address",
+            "city",
+            "state"
+        ]
+    },
+    "farmName": "Brown Acres Farm",
+    "event": "event0001"
 }, 
 
 <!DOCTYPE HTML>
