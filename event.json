@@ -3,6 +3,17 @@
         "name": "Walk for Dysentary",
         "startDate": "2015-02-20T10:00",
         "organizer": "Farmer's Market",
+    }
+    "event0002": {
+        "name": "Grilling for the Lord",
+        "startDate": "2015-05-18T09:30",
+        "organizer": "Farmer's Market",
+    }
+    "event0003": {
+        "name": "Squashing Pumpkins",
+        "startDate": "2015-09-15T10:30",
+        "organizer": "Farmer's Market",
+    }
  }, 
 
 
