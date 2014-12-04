@@ -21,72 +21,49 @@
             "state"
         ]
     }
+    "frm7ah": {
+        "name": "Pappy McGilly",
+        "jobTitle": "Farmer",
+        "worksFor": "farm0002",
+        "farm": "farm0002",
+        "farmLocation": {
+            "street_address": {
+                "type=string": "153 Agriculture Lane"
+            },
+            "city": {
+                "type=string": "Morrisville"
+            },
+            "state": {
+                "type=string": "NC"
+            }
+        },
+        "required": [
+            "street_address",
+            "city",
+            "state"
+        ]
+    }
+    "frm6ah": {
+        "name": "Ricky Bobby",
+        "jobTitle": "Farmer",
+        "worksFor": "farm0003",
+        "farm": "farm0003",
+        "farmLocation": {
+            "street_address": {
+                "type=string": "227 Sugar Snap Street"
+            },
+            "city": {
+                "type=string": "Pittsboro"
+            },
+            "state": {
+                "type=string": "NC"
+            }
+        },
+        "required": [
+            "street_address",
+            "city",
+            "state"
+        ]
+    }  
 }, 
 
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Directory of Farmers</title>
-	</head>
-	<body prefix="schema: http://schema.org/">
-
-		<div resource="frmr0001"
-		     typeof="Person">
-		<span property="name">Joe Brown</span>
-		<span property="jobTitle">Farmer</span>
-		<span property="worksFor">Brown Acres Farm</span>
-		</div>
-
-<div resource="farm0001"
-vocab="http://schema.org/"
-typeof="LocalBusiness">
-<span property="name">Brown Acres Farm</span>
-Contact Details:
-<div property="address" typeof="PostalAddress">
-Main address:
-<span property="streetAddress">100 Produce Avenue</span>
-<span property="postalCode">27285</span>
-<span property="addressLocality">Kernersville, NC</span>
-</div>
-<a property="url" href="farmers-market.html">
-Chapel Hill Farmer's Market
-</a>
-<div resource="item0001"
-vocab="http://schema.org/"
-typeof="product">
-<span property="name">Granny Smith Apple</span>
-<span property="offers">$10.00/box</span>
-<span property="releaseDate">2014-01-01</span>
-<span property="itemCondition">Organic</span>
-<span property="sale">no</span>
-</div>
-<div resource="item0002"
-vocab="http://schema.org/"
-typeof="product">
-<span property="name">Red Fiji Apple</span>
-<span property="offers">$9.00/box</span>
-<span property="releaseDate">2014-03-01</span>
-<span property="itemCondition">Not-Organic</span>
-<span property="sale">yes</span>
-</div>
-
-
-<div resource="event0001"
-vocab="http://schema.org/"
-typeof="event">
-<span property="name">Walk for Dysentary</span>
-<meta property="startDate" content="2015-02-20T10:00">
-February 20, 2015
-10:00 am
-<span property="organizer">Farmer's Market</span>
-
-
-<span property="offers">10% Off All Items!</span>
-<span property="itemCondition">Organic & Non-Organic</span>
-<span property="image">FarmFest.jpg</span>
-
-</div>
-<div property="location" typeof="Place">
-</div>
-</body>
-</html>
