@@ -12,6 +12,8 @@ from datetime import datetime
 # load help requests data from disk
 with open('data.json') as data:
     data = json.load(data)
+with open('data_produce.json') as data_produce:
+    data_produce = json.load(data_produce)    
 
 #
 # define some helper functions
@@ -25,7 +27,7 @@ def error_if_produce_not_found(produce_id):
         abort(404, message=message)
 
 def error_if_farmer_not_found(farmer_id):
-    if farmer_id not in data["farmer"]:
+    if farmer_id not in data:
         message = "Help farmer {} doesn't exist".format(farmer_id)    
         abort(404, message=message)
 
@@ -33,17 +35,17 @@ def filter_and_sort_farmers(q='', sort_by='name'):
    filter_function = lambda x: q.lower() in (
         x[1]['jobTitle'] + x[1]['worksFor']).lower()
    filtered_farmer = filter(filter_function,
-                                  data["farmer"].items())
+                                  data.items())
    key_function = lambda x: x[1][sort_by]
    return sorted(filtered_farmer, key=key_function, reverse=True)
 
-#def filter_and_sort_produce(q='', sort_by='name'):
- #   filter_function = lambda x: q.lower() in (
-  #      x[1]['releaseDate'] + x[1]['itemCondidtion']).lower()
-   # filtered_produce = filter(filter_function,
-    #                               data["produce"].items())
-    #key_function = lambda x: x[1][sort_by]
-    #return sorted(filtered_produce, key=key_function, reverse=True)
+def filter_and_sort_produce(q='', sort_by='name'):
+    filter_function = lambda x: q.lower() in (
+        x[1]['releaseDate'] + x[1]['itemCondition']).lower()
+    filtered_produce = filter(filter_function,
+                                  data_produce.items())
+    key_function = lambda x: x[1][sort_by]
+    return sorted(filtered_produce, key=key_function, reverse=True)
         
 def render_farmer_as_html(farmer):
    return render_template(
@@ -56,11 +58,16 @@ def render_farmer_list_as_html(farmers):
         'data.html',
         farmers=farmers)
     
-#def render_produce_as_html(produce):
- #  return render_template(
-  #      'produce.html',
-   #     produce=produce
+def render_produce_as_html(produce):
+   return render_template(
+      'data_produce.html',
+       produce=produce)
         #priorities=PRIORITIES)
+
+def render_produce_list_as_html(produce):
+    return render_template(
+        'data_produce.html',
+        produce=produce)
 
 def nonempty_string(x):
     s = str(x)
@@ -121,7 +128,7 @@ class Farmer(Resource):
         error_if_farmer_not_found(farmer_id)
         return make_response(
             render_farmer_as_html(
-                data['farmer'][farmer_id]), 200)
+                data[farmer_id]), 200)
 
     def patch(self, farmer_id):
         error_if_farmer_not_found(farmer_id)
@@ -153,7 +160,7 @@ class Produce(Resource):
 class FarmerAsJSON(Resource):
     def get(self, farmer_id):
         error_if_farmer_not_found(farmer_id)
-        farmer = data['farmers'][farmer_id]
+        farmer = data['farmer'][farmer_id]
         #farmer["@context"] = data["@context"]
         return farmer
     
@@ -174,6 +181,23 @@ class FarmerList(Resource):
             render_farmer_list_as_html(
                 filter_and_sort_farmer()), 201)
 
+class ProduceList(Resource):
+    def get(self):
+        query = query_parser.parse_args()
+        return make_response(
+            render_produce_list_as_html(
+                filter_and_sort_produce(
+                   q=query['q'], sort_by=query['sort-by'])), 200)
+
+    def post(self):
+        produce = new_produce_parser.parse_args()
+        produce['name'] = name
+        produce['itemCondition'] = itemCondition
+        produce[generate_id()] = produce
+        return make_response(
+            render_produce_list_as_html(
+                filter_and_sort_produce()), 201)
+
 class FarmerListAsJSON(Resource):
     def get(self):
         return data
@@ -184,7 +208,7 @@ class FarmerListAsJSON(Resource):
 app = Flask(__name__)
 api = Api(app)
 api.add_resource(FarmerList, '/farmers')
-#api.add_resource(ProduceList, '/produce')
+api.add_resource(ProduceList, '/produce')
 api.add_resource(FarmerListAsJSON, '/farmers.json')
 api.add_resource(Farmer, '/farmer/<string:farmer_id>')
 api.add_resource(Produce, '/produce/<string:produce_id>')
