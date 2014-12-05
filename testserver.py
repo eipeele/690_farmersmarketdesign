@@ -13,7 +13,9 @@ from datetime import datetime
 with open('data.json') as data:
     data = json.load(data)
 with open('data_produce.json') as data_produce:
-    data_produce = json.load(data_produce)    
+    data_produce = json.load(data_produce)
+with open('event.json') as event:
+    event = json.load(event)        
 
 #
 # define some helper functions
@@ -22,13 +24,18 @@ def generate_id(size=6, chars=string.ascii_lowercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
 def error_if_produce_not_found(produce_id):
-    if produce_id not in data["produce"]:
+    if produce_id not in data_produce:
         message = "Help produce {} doesn't exist".format(produce_id)    
         abort(404, message=message)
 
 def error_if_farmer_not_found(farmer_id):
     if farmer_id not in data:
         message = "Help farmer {} doesn't exist".format(farmer_id)    
+        abort(404, message=message)
+
+def error_if_event_not_found(event_id):
+    if event_id not in event:
+        message = "Help event {} doesn't exist".format(event_id)    
         abort(404, message=message)
 
 def filter_and_sort_farmers(q='', sort_by='name'):
@@ -39,35 +46,53 @@ def filter_and_sort_farmers(q='', sort_by='name'):
    key_function = lambda x: x[1][sort_by]
    return sorted(filtered_farmer, key=key_function, reverse=True)
 
-def filter_and_sort_produce(q='', sort_by='name'):
+def filter_and_sort_produces(q='', sort_by='name'):
     filter_function = lambda x: q.lower() in (
         x[1]['releaseDate'] + x[1]['itemCondition']).lower()
     filtered_produce = filter(filter_function,
                                   data_produce.items())
     key_function = lambda x: x[1][sort_by]
     return sorted(filtered_produce, key=key_function, reverse=True)
+
+def filter_and_sort_events(q='', sort_by='name'):
+    filter_function = lambda x: q.lower() in (
+        x[1]['startDate'] + x[1]['organizer']).lower()
+    filtered_event = filter(filter_function,
+                                  event.items())
+    key_function = lambda x: x[1][sort_by]
+    return sorted(filtered_event, key=key_function, reverse=True)    
         
 def render_farmer_as_html(farmer):
    return render_template(
-       'data.html',
+       'farmer.html',
         farmer=farmer)
         #priorities=reversed(list(enumerate(PRIORITIES))))
 
 def render_farmer_list_as_html(farmers):
     return render_template(
-        'data.html',
+        'farmers.html',
         farmers=farmers)
     
 def render_produce_as_html(produce):
    return render_template(
-      'data_produce.html',
+      'produce.html',
        produce=produce)
         #priorities=PRIORITIES)
 
-def render_produce_list_as_html(produce):
+def render_produce_list_as_html(produces):
     return render_template(
-        'data_produce.html',
-        produce=produce)
+        'produces.html',
+        produces=produces)
+
+def render_event_as_html(event):
+   return render_template(
+      'event.html',
+       event=event)
+
+def render_event_list_as_html(events):
+    return render_template(
+        'events.html',
+        events=events)
 
 def nonempty_string(x):
     s = str(x)
@@ -86,7 +111,13 @@ for arg in ['name', 'worksFor']:
 
 new_produce_parser = reqparse.RequestParser()
 for arg in ['name', 'offers', 'releaseDate', 'itemCondition', 'sale']:
-    new_farmer_parser.add_argument(
+    new_produce_parser.add_argument(
+        arg, type=nonempty_string, required=True,
+        help="'{}' is a required value".format(arg))
+
+new_event_parser = reqparse.RequestParser()
+for arg in ['name', 'startDate', 'organizer']:
+    new_event_parser.add_argument(
         arg, type=nonempty_string, required=True,
         help="'{}' is a required value".format(arg))
 
@@ -110,6 +141,14 @@ update_produce_parser.add_argument(
     'itemCondition', type=str, default='')
 update_produce_parser.add_argument(
     'sale', type=str, default='')
+
+update_event_parser = reqparse.RequestParser()
+update_event_parser.add_argument(
+    'name', type=str, default='')
+update_event_parser.add_argument(
+    'startDate', type=str, default='')
+update_event_parser.add_argument(
+    'organizer', type=str, default='')
 
 #
 # specify the parameters for filtering and sorting help requests
@@ -145,7 +184,7 @@ class Produce(Resource):
         error_if_produce_not_found(produce_id)
         return make_response(
             render_produce_as_html(
-                data['produce'][produce_id]), 200)
+                data_produce[produce_id]), 200)
 
     def patch(self, produce_id):
         error_if_produce_not_found(produce_id)
@@ -186,7 +225,7 @@ class ProduceList(Resource):
         query = query_parser.parse_args()
         return make_response(
             render_produce_list_as_html(
-                filter_and_sort_produce(
+                filter_and_sort_produces(
                    q=query['q'], sort_by=query['sort-by'])), 200)
 
     def post(self):
@@ -202,16 +241,52 @@ class FarmerListAsJSON(Resource):
     def get(self):
         return data
 
+class Event(Resource):
+    def get(self, event_id):
+        error_if_event_not_found(event_id)
+        return make_response(
+            render_event_as_html(
+                event[event_id]), 200)
+
+    def patch(self, event_id):
+        error_if_event_not_found(event_id)
+        event = event["event"][event_id]
+        update = update_event_parser.parse_args()
+        event['name'] = update['name']
+        if len(update['startDate'].strip()) > 0:
+            event.setdefault('startDate', []).append(update['startDate'])
+        return make_response(
+            render_event_as_html(event), 200)
+
+class EventList(Resource):
+    def get(self):
+        query = query_parser.parse_args()
+        return make_response(
+            render_event_list_as_html(
+                filter_and_sort_events(
+                   q=query['q'], sort_by=query['sort-by'])), 200)
+
+    def post(self):
+        event = new_event_parser.parse_args()
+        event['name'] = name
+        event['startDate'] = startDate
+        event[generate_id()] = event
+        return make_response(
+            render_event_list_as_html(
+                filter_and_sort_event()), 201)
+
 #
 # assign URL paths to our resources
 #
 app = Flask(__name__)
 api = Api(app)
 api.add_resource(FarmerList, '/farmers')
-api.add_resource(ProduceList, '/produce')
+api.add_resource(ProduceList, '/produces')
+api.add_resource(EventList, '/events')
 api.add_resource(FarmerListAsJSON, '/farmers.json')
 api.add_resource(Farmer, '/farmer/<string:farmer_id>')
 api.add_resource(Produce, '/produce/<string:produce_id>')
+api.add_resource(Event, '/event/<string:event_id>')
 api.add_resource(FarmerAsJSON, '/request/<string:farmer_id>.json')
 
 # start the server
