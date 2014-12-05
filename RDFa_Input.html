@@ -1,0 +1,53 @@
+<!doctype html>
+<link rel="alternate" type="application/json" href="{{ request.path }}.json">
+<title>Enter Your Farmer Here!</title>
+
+
+<a href="http://www.w3.org/2012/pyRdfa/extract?uri=referer">
+view data extracted from RDFa markup</a><br>
+
+<h1 property="name">Farmer Input</h1>  
+   <br>
+   <label>Farmer Name<br>
+    <ul>
+      <li property="farmerName">
+        <p property="input">Enter Farmer Name Here</p>
+      </li>
+    </ul>
+    <textarea name="comment"></textarea>
+  </label>
+  <br>
+     <br>
+   <label>Farmer E-Mail Address<br>
+    <ul>
+      <li property="eMail">
+        <p property="input">Enter E-Mail Address Here</p>
+      </li>
+    </ul>
+    <textarea name="comment"></textarea>
+  </label>
+  <br>
+     <br>
+   <label>Where You Work<br>
+    <ul>
+      <li property="whereWork">
+        <p property="input">Enter Where You Work Here!</p>
+      </li>
+    </ul>
+    <textarea name="comment"></textarea>
+  </label>
+  <br>
+  <input class="update" type="submit" value="Enter Farmer Now!">
+  <script>
+    var form = document.querySelector('form.help-request-editor');
+    var button = document.querySelector('form.help-request-editor input.update');
+
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      var request = new XMLHttpRequest();
+      request.open('PATCH', window.location.pathname);
+      request.send(new FormData(form));
+    }, false);
+  </script>
+</form>
+</body>
