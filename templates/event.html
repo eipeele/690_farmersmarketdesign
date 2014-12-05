@@ -1,0 +1,25 @@
+<!doctype html>
+<link rel="alternate" type="application/json" href="{{ request.path }}.json">
+
+<body           vocab="http://schema.org/"
+                typeof="Event">
+
+<a href="http://www.w3.org/2012/pyRdfa/extract?uri=referer">
+view data extracted from RDFa markup</a><br>
+
+<h1 property="name">{{ event.name }}</h1>  
+
+  <label>Event Info<br>
+      <li property="name">Name:  {{event.name}}
+        <p  property="startDate">Start Date:  {{event.startDate}}</p>
+        <p propery="organizer">Organizer:  {{event.organizer}}</p>
+      </li>
+    <textarea name="comment"></textarea>
+  </label>
+
+
+
+
+
+<p><a rel="collection" href="{{ url_for('eventlist') }}">List of Events</a></p>
+</body>
