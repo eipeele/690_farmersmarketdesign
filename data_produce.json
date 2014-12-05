@@ -1,21 +1,26 @@
 {
-    "item0001": {
+    "pro1ap": {
         "name": "Granny Smith Apple",
         "offers": "$10.00/box",
         "releaseDate": "2014-01-01",
         "itemCondition": "Organic",
         "sale": "no",
-    "item0002": {
+        "brand": {"name": "Ricky Bobby"}
+    },
+    "pro1fj": {
         "name": "Red Fiji Apple",
         "offers": "$9.00/box",
         "releaseDate": "2014-03-01",
         "itemCondition": "Not-Organic",
         "sale": "yes",
-    "item0003": {
+        "brand": {"name": "Joe Brown"}
+    },
+    "pro7on": {
         "name": "Vidalia Sweet Onion",
         "offers": "$4.00/bag",
         "releaseDate": "2014-02-01",
         "itemCondition": "Not-Organic",
         "sale": "yes",
-}, 
-
+        "brand": {"name": "Paddy McGilly"}
+    }
+}
