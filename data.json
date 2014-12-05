@@ -1,0 +1,37 @@
+{
+    "frm3ah": {
+        "name": "Joe Brown",
+        "jobTitle": "Farmer",
+        "worksFor": "Green Acres Farm",
+        "farm": "farm0001",
+        "farmLocation": {
+            "street_address": "100 Produce Avenue",
+            "city": "Kernersville",
+            "state": "NC"
+        }
+    },
+    "frm7ah": {
+        "name": "Pappy McGilly",
+        "jobTitle": "Farmer",
+        "worksFor": "Belties and Produce Inc.",
+        "farm": "farm0002",
+        "farmLocation": {
+            "street_address": "153 Agriculture Lane",
+            "city": "Morrisville",
+            "state": "NC"
+        }
+    },
+    "frm6ah": {
+        "name": "Ricky Bobby",
+        "jobTitle": "Farmer",
+        "worksFor": "Talladega Produce",
+        "farm": "farm0003",
+        "farmLocation": {
+            "street_address": {
+                "type=string": "227 Sugar Snap Street",
+                "city": "Pittsboro",
+                "state": "NC"
+            }
+        }
+    }
+}
