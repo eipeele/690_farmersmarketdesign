@@ -1,0 +1,43 @@
+<!doctype html>
+<link rel="alternate" type="application/json" href="{{ request.path }}.json">
+<title>List of Events</title>
+
+
+<a href="{{ url_for('eventlist') }}?sort-by=name">sort by name</a>
+
+<form class="search" method="get">
+  <input name="q" type="text" value="{{ request.args["q"] }}">
+  {% if 'sort-by' in request.args %}
+  <input name="sort-by" type="hidden" value="{{ request.args["sort-by"] }}">
+  {% endif %}
+  <input class="query" type="submit" value="search">
+</form>
+
+<ol>
+  {% for event_id, event in events %}
+  <li itemscope
+      itemid="{{ url_for('event', event_id=event_id, _external=True) }}"
+      resource="{{ url_for('event', event_id=event_id, _external=True) }}"
+      vocab="http://schema.org/"
+      typeof="Event">
+    
+    <a href="{{ url_for('event', event_id=event_id) }}">
+      <span itemprop="name" property="name">{{ event.name }}</span>
+    </a>
+  </li>
+  {% endfor %}
+</ol>
+
+<form class="helprequest-editor" action="{{ url_for('farmerlist') }}" method="post">
+  <label>from
+    <input name="from" type="text">
+  </label>
+  <br>
+  <label>title
+    <input name="title" type="text">
+  </label>
+  <br>
+  <textarea name="description"></textarea>
+  <br>  
+  <input class="create" type="submit" value="create new request">
+</form>
