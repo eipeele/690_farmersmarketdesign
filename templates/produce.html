@@ -1,0 +1,30 @@
+<!doctype html>
+<link rel="alternate" type="application/json" href="{{ request.path }}.json">
+
+<body           vocab="http://schema.org/"
+                typeof="Product">
+
+<a href="http://www.w3.org/2012/pyRdfa/extract?uri=referer">
+view data extracted from RDFa markup</a><br>
+
+<h1 property="name">{{ produce.name }}</h1>  
+
+  <label>Produce Info<br>
+  </br>
+      <li property="name">Name:  {{produce.name}}
+        <p  property="offers">Offers:  {{produce.offers}}</p>
+        <p property="releaseDate">Farmed Date:   {{produce.releaseDate}}</p>
+        <p property="itemCondition">Item Condition:  {{produce.itemCondition}}</p>
+        <p property="sale">On Sale:  {{produce.sale}}</p>
+        <p property="brand">Sold By:  {{produce.brand.name}}</p>
+      </li>
+ 
+    <textarea name="comment"></textarea>
+  </label>
+
+
+
+
+
+<p><a rel="collection" href="{{ url_for('producelist') }}">List of Produce</a></p>
+</body>
