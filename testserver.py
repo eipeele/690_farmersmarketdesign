@@ -180,6 +180,13 @@ class Farmer(Resource):
         return make_response(
             render_farmer_as_html(farmer), 200)
 
+    def delete(self, farmer_id):
+        error_if_farmer_not_found(farmer_id)
+        farmer = data[farmer_id]
+        del data[farmer_id]
+        return make_response(
+        render_farmer_as_html(farmer), 204)
+
 class Produce(Resource):
     def get(self, produce_id):
         error_if_produce_not_found(produce_id)
