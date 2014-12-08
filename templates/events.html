@@ -1,6 +1,7 @@
 <!doctype html>
 <link rel="alternate" type="application/json" href="{{ request.path }}.json">
-<title>List of Events</title>
+<body>
+  <title>List of Events</title>
 
 
 <a href="{{ url_for('eventlist') }}?sort-by=name">sort by name</a>
@@ -12,6 +13,8 @@
   {% endif %}
   <input class="query" type="submit" value="search">
 </form>
+
+<h1>List of Events</h1>
 
 <ol>
   {% for event_id, event in events %}
@@ -28,16 +31,27 @@
   {% endfor %}
 </ol>
 
-<form class="helprequest-editor" action="{{ url_for('farmerlist') }}" method="post">
-  <label>from
-    <input name="from" type="text">
-  </label>
-  <br>
-  <label>title
-    <input name="title" type="text">
-  </label>
-  <br>
-  <textarea name="description"></textarea>
-  <br>  
-  <input class="create" type="submit" value="create new request">
+<h2 property="name">Event Input</h2>
+<form class="add_event" method="PUT">
+Add New Event
+<input class="name" type="text" name="name" value="name">
+<input class="description" type="text" name="startDate" value="Date" />
+<input class="add" type="submit" />
 </form>
+
+<h3>Return to <a rel="collection" href="{{ url_for('farmerlist') }}">farmers</a>.</h3>
+<h3>Return to <a rel="collection" href="{{ url_for('producelist') }}">produce</a>.</h3>
+
+<script>
+var addForm = document.querySelector('form.add_event');
+var addButton = document.querySelector('form.add_event input.add');
+addButton.addEventListener('click', function (event) {
+event.preventDefault();
+var request = new XMLHttpRequest();
+request.open('PUT', window.location.pathname);
+request.send(new FormData(addForm));
+{# console.log(new FormData(addForm))#}
+location.reload();
+}, false);
+</script>
+</body>
