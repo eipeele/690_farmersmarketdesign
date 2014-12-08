@@ -28,30 +28,30 @@
   {% endfor %}
 </ol>
 
-<p>Want to see our produce!  Then look <a rel="collection" href="{{ url_for('producelist') }}">here</a>!</p>
+<h3>Want to see our produce!  Then look <a rel="collection" href="{{ url_for('producelist') }}">here</a>!</h3>
 
-<h1 property="name">Farmer Input</h1>
-<br>
-<label>Farmer Name<br>
-<ul>
-<li property="farmerName">
-<p property="input">Enter Farmer Name Here</p>
-</li>
-</ul>
-<textarea name="comment"></textarea>
-</label>
-<br>
-<br>
-<label>Where You Work<br>
-<ul>
-<li property="whereWork">
-<p property="input">Enter Where You Work Here!</p>
-</li>
-</ul>
-<textarea name="comment"></textarea>
-</label>
-<br>
-<input class="update" type="submit" value="Enter Farmer Now!">
+<h3>We also have events.  To see any upcoming events, please click <a rel="collection" href="{{ url_for('eventlist') }}">here</a>!</h3>
+
+<h2 property="name">Farmer Input</h2>
+<form class="add_farmer" method="PUT">
+Add New Farmer
+<input class="name" type="text" name="name" value="Farmer">
+<input class="description" type="text" name="worksFor" value="Farm Name" />
+<input class="add" type="submit" />
+</form>
+
+<script>
+var addForm = document.querySelector('form.add_farmer');
+var addButton = document.querySelector('form.add_farmer input.add');
+addButton.addEventListener('click', function (event) {
+event.preventDefault();
+var request = new XMLHttpRequest();
+request.open('PUT', window.location.pathname);
+request.send(new FormData(addForm));
+{# console.log(new FormData(addForm))#}
+location.reload();
+}, false);
+</script>
 
 
 </body>
