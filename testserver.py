@@ -205,6 +205,13 @@ class Produce(Resource):
         return make_response(
             render_produce_as_html(produce), 200)
 
+    def delete(self, produce_id):
+        error_if_produce_not_found(produce_id)
+        produce = data_produce[produce_id]
+        del data_produce[produce_id]
+        return make_response(
+        render_farmer_as_html(produce), 204)
+
 class FarmerAsJSON(Resource):
     def get(self, farmer_id):
         error_if_farmer_not_found(farmer_id)
@@ -259,11 +266,12 @@ class Event(Resource):
 
     def patch(self, event_id):
         error_if_event_not_found(event_id)
-        event = event["event"][event_id]
+        event = event[event_id]
         update = update_event_parser.parse_args()
+        print update
         event['name'] = update['name']
         if len(update['startDate'].strip()) > 0:
-            event.setdefault('startDate', []).append(update['startDate'])
+            event['startDate'] = update['startDate']
         return make_response(
             render_event_as_html(event), 200)
 
