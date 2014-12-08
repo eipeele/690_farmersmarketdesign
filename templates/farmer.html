@@ -9,7 +9,7 @@ view data extracted from RDFa markup</a><br>
 
 <h1 property="name">{{ farmer.name }}</h1>  
 
-  <h2>Farmer Info</h2>
+  <h3>Farmer Info</h3>
       <li>
         <p property="worksFor">Farm Name:  {{farmer.worksFor}}</p>
         <p propery="location">Farm Location:  {{farmer.farmLocation.street_address}},
@@ -24,11 +24,14 @@ Update Farmer
 <input class="description" type="text" name="worksFor" value="Farm Name" />
 <input class="add" type="submit" value="Update your listing" />
 </form>
-
-<form method="DELETE" class="delete-farmer">
+</br>
+<form class="delete-farmer" method="DELETE">
 Delete Farmer
 <input class="this" type="submit" />
 </form>
+
+<h3><a rel="collection" href="{{ url_for('farmerlist') }}">List of Farmers</a></h3>
+<h3><a rel="collection" href="{{ url_for('producelist') }}">List of Produce</a></h3>
   
 
 <script>
@@ -56,6 +59,5 @@ location.reload();
 </script>
 
   
-<p><a rel="collection" href="{{ url_for('farmerlist') }}">List of Farmers</a></p>
-<p><a rel="collection" href="{{ url_for('producelist') }}">List of Produce</a></p>
+
 </body>
