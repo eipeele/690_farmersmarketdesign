@@ -39,13 +39,13 @@ view data extracted from RDFa markup</a><br>
   <br>
   <input class="update" type="submit" value="Enter Farmer Now!">
   <script>
-    var form = document.querySelector('form.help-request-editor');
-    var button = document.querySelector('form.help-request-editor input.update');
+    var form = document.querySelector('form.farmer_input');
+    var button = document.querySelector('form.farmer_input.update');
 
     button.addEventListener('click', function (event) {
       event.preventDefault();
       var request = new XMLHttpRequest();
-      request.open('PATCH', window.location.pathname);
+      request.open('PATCH' 'PUT' 'DELETE', window.location.pathname);
       request.send(new FormData(form));
     }, false);
   </script>
