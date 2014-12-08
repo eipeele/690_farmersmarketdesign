@@ -16,27 +16,27 @@ view data extracted from RDFa markup</a><br>
       </li>
 
 
-<form class="add_event" method="PUT">
-Add new event
-<input class="name" type="text" name="name" value="Event">
+<form method="PATCH" class="update-event">
+Update Event
+<input class="name" type="text" name="name" value="Event Name" />
 <input class="description" type="text" name="startDate" value="Date" />
-<input class="add" type="submit" />
+<input class="add" type="submit" value="Update your listing" />
 </form>
 
 
-<form method="DELETE" class="delete-event">
-Delete Produce
+<form class="delete-event" method="DELETE">
+Delete Event
 <input class="this" type="submit" />
 </form>
 
 
 <script>
-var addForm = document.querySelector('form.add_event');
-var addButton = document.querySelector('form.add_event input.add');
+var addForm = document.querySelector('form.update-event');
+var addButton = document.querySelector('form.update-event input.add');
 addButton.addEventListener('click', function (event) {
 event.preventDefault();
 var request = new XMLHttpRequest();
-request.open('PUT', window.location.pathname);
+request.open('PATCH', window.location.pathname);
 request.send(new FormData(addForm));
 {# console.log(new FormData(addForm))#}
 location.reload();
@@ -52,7 +52,7 @@ request.send(new FormData(delForm));
 location.reload();
 {# console.log(new FormData(remForm))#}
 }, false);
-</script> 
+</script>
  
 
 
