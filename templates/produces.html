@@ -40,3 +40,16 @@
   <br>  
   <input class="create" type="submit" value="create new request">
 </form>
+
+<script>
+var addForm = document.querySelector('form.add_produce');
+var addButton = document.querySelector('form.add_produce input.add');
+addButton.addEventListener('click', function (event) {
+event.preventDefault();
+var request = new XMLHttpRequest();
+request.open('PUT', window.location.pathname);
+request.send(new FormData(addForm));
+{# console.log(new FormData(addForm))#}
+location.reload();
+}, false);
+</script>
