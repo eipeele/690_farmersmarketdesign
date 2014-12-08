@@ -13,8 +13,8 @@ view data extracted from RDFa markup</a><br>
       <li>
         <p property="worksFor">Farm Name:  {{farmer.worksFor}}</p>
         <p propery="location">Farm Location:  {{farmer.farmLocation.street_address}},
-        <propery="location">{{farmer.farmLocation.city}},
-        <propery="location">{{farmer.farmLocation.state}}</p>
+        <property="location">{{farmer.farmLocation.city}},
+        <property="location">{{farmer.farmLocation.state}}</p>
       </li>
   
 
@@ -58,17 +58,6 @@ location.reload();
 }, false);
 </script>
 
-  <script>
-var addForm = document.querySelector('form.add_farmer');
-var addButton = document.querySelector('form.add_farmer input.add');
-addButton.addEventListener('click', function (event) {
-event.preventDefault();
-var request = new XMLHttpRequest();
-request.open('PUT', window.location.pathname);
-request.send(new FormData(addForm));
-{# console.log(new FormData(addForm))#}
-location.reload();
-}, false);
-</script>
+  
 
 </body>
