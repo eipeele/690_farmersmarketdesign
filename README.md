@@ -1,47 +1,38 @@
 690_farmersmarketdesign
 =======================
-
-Done in fulfillment of assignment 3 for INLS 690.
+The following class and rel attributes are used throughout this framework to help describe the links and forms.
 
 #Class attributes:
 
   *search*:  May appear in the form class.  Describes action of form.
   
-  *create_farmerslisting*:  May appear in the form class.  Describes action of form.
+  *add_farmer*:  May appear in the form class.  Describes action of form.
   
-  *update_inventory*:  May appear in the form class.  Describes action of form.
+  *update-farmer*:  May appear in the form class.  Describes action of form.
+  
+  *delete-farmer*:  May appear in the form class.  Describes action of form.
   
   *create_inventory*:  May appear in the form class.  Describes action of form.
   
   *name*:  May appear in farm input and span class.  Describes data being inputted.
   
+  *query*:  May appear in input of form class.  Describes action of form.
+  
+  *description*"  May appear in form input.  Describes data being inputted.
+  
   *location*:  May appear in farm input.  Describes data being inputted.
   
-  *inventory*:  May appear in ol list.  Describes type of list.
-  
-  *farmer*:  May appear in li class.  Describes what is being inputted.
-  
-  *produce*:  May appear in ul class.  Describes type of data.
-  
-  *fruit*:  May appear in li class.  Describes type of data.
+  *add*:  May appear in input class of form.  Describes action of class.
   
   *type*:  May appear in span class.  Describes type of data.
-  
-  *amount*:  May appear in span class.  Describes type of data.
-  
-  *price*:  May appear in span class.  Describes type of data.
-  
-  *vegetable*:  May appear in li class.  Describes type of data.
-  
-  *directory*:  May appear in ol class.  Describes type of list.
-  
-  *results*:  May appear in ol class.  Describes type of list.
-  
-  *resultone*, *resulttwo*, *resultthree*:  May appear in li class.  Orders search result data.
 
-#Rel Attributes:
+ #Rel Attributes:
 
-  *index*:  Used to describe the outbound link as one leading to a listing of items.
+  *alternate*:  Used to describe the link as an alternate representation of the resource.
+
+  *collection*:  Used to describe the outbound link as a group of items.
+  
+  *item*:  Used to describe the outbound link as an item belonging to the collection.
   
   *create-form*:  Used to describe the outbound link as one leading to a form in which information will be inputted.
   
