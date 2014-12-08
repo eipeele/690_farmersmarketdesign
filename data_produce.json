@@ -22,5 +22,29 @@
         "itemCondition": "Not-Organic",
         "sale": "yes",
         "brand": {"name": "Paddy McGilly"}
+    },
+    "pro9as": {
+        "name": "Asparagus",
+        "offers": "$3.00/bundle",
+        "releaseDate": "2014-02-14",
+        "itemCondition": "Organic",
+        "sale": "no",
+        "brand": {"name": "Laura Red"}
+    },
+    "pro4jd": {
+        "name": "Cranberries",
+        "offers": "$2.00/pound",
+        "releaseDate": "2014-03-02",
+        "itemCondition": "Organic",
+        "sale": "no",
+        "brand": {"name": "Paul Green"}
+    },
+    "pro2le": {
+        "name": "Lemons",
+        "offers": "$1.00/2",
+        "releaseDate": "2014-02-13",
+        "itemCondition": "Not-Organic",
+        "sale": "no",
+        "brand": {"name": "Sarah Brown"}
     }
 }
