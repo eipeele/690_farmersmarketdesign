@@ -58,6 +58,17 @@ location.reload();
 }, false);
 </script>
 
-  
+  <script>
+var addForm = document.querySelector('form.add_farmer');
+var addButton = document.querySelector('form.add_farmer input.add');
+addButton.addEventListener('click', function (event) {
+event.preventDefault();
+var request = new XMLHttpRequest();
+request.open('PUT', window.location.pathname);
+request.send(new FormData(addForm));
+{# console.log(new FormData(addForm))#}
+location.reload();
+}, false);
+</script>
 
 </body>
