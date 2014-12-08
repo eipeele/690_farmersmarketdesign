@@ -30,16 +30,28 @@
 
 <p>Want to see our produce!  Then look <a rel="collection" href="{{ url_for('producelist') }}">here</a>!</p>
 
-<form class="helprequest-editor" action="{{ url_for('farmerlist') }}" method="post">
-  <label>from
-    <input name="from" type="text">
-  </label>
-  <br>
-  <label>title
-    <input name="title" type="text">
-  </label>
-  <br>
-  <textarea name="description"></textarea>
-  <br>  
-  <input class="create" type="submit" value="create new request">
-</form>
+<h1 property="name">Farmer Input</h1>
+<br>
+<label>Farmer Name<br>
+<ul>
+<li property="farmerName">
+<p property="input">Enter Farmer Name Here</p>
+</li>
+</ul>
+<textarea name="comment"></textarea>
+</label>
+<br>
+<br>
+<label>Where You Work<br>
+<ul>
+<li property="whereWork">
+<p property="input">Enter Where You Work Here!</p>
+</li>
+</ul>
+<textarea name="comment"></textarea>
+</label>
+<br>
+<input class="update" type="submit" value="Enter Farmer Now!">
+
+
+</body>
