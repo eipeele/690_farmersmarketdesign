@@ -8,9 +8,15 @@ The following class and rel attributes are used throughout this framework to hel
   
   *add_farmer*:  May appear in the form class.  Describes action of form.
   
+  *add_produce*:  May appear in the form class.  Describes action of form.
+  
   *update-farmer*:  May appear in the form class.  Describes action of form.
   
+  *update-produce*:  May appear in the form class.  Describes action of form.
+  
   *delete-farmer*:  May appear in the form class.  Describes action of form.
+  
+  *delete-produce*:  May appear in the form class.  Describes action of form.
   
   *create_inventory*:  May appear in the form class.  Describes action of form.
   
