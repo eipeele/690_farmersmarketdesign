@@ -48,8 +48,7 @@ Done in fulfillment of assignment 3 for INLS 690.
   *anchor*:  Used to describe the outbound link as one leading to a hashed anchor tag within another page.
   
 
-
-  #In order to run this, you will need to do the follow:
+ #In order to run this, you will need to do the follow:
   
   -Install [Python](https://www.python.org/)
   
