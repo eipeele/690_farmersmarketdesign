@@ -171,11 +171,12 @@ class Farmer(Resource):
 
     def patch(self, farmer_id):
         error_if_farmer_not_found(farmer_id)
-        farmer = data["farmer"][farmer_id]
+        farmer = data[farmer_id]
         update = update_farmer_parser.parse_args()
+        print update
         farmer['name'] = update['name']
         if len(update['worksFor'].strip()) > 0:
-            farmer.setdefault('worksFor', []).append(update['worksFor'])
+            farmer['worksFor'] = update['worksFor']
         return make_response(
             render_farmer_as_html(farmer), 200)
 
@@ -188,11 +189,12 @@ class Produce(Resource):
 
     def patch(self, produce_id):
         error_if_produce_not_found(produce_id)
-        produce = data['produce'][produce_id]
+        produce = data_produce[produce_id]
         update = update_produce_parser.parse_args()
+        print update
         produce['name'] = update['name']
         if len(update['offers'].strip()) > 0:
-            produce.setdefault('offers', []).append(update['offers'])
+            produce['offers'] = update['offers']
         return make_response(
             render_produce_as_html(produce), 200)
 
@@ -231,7 +233,7 @@ class ProduceList(Resource):
     def post(self):
         produce = new_produce_parser.parse_args()
         produce['name'] = name
-        produce['itemCondition'] = itemCondition
+        produce['offers'] = offers
         produce[generate_id()] = produce
         return make_response(
             render_produce_list_as_html(
