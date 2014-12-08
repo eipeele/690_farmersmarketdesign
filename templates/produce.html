@@ -9,7 +9,7 @@ view data extracted from RDFa markup</a><br>
 
 <h1 property="name">{{ produce.name }}</h1>  
 
-  <label>Produce Info<br>
+  <h2>Produce Info</h2>
   </br>
       <li property="name">Name:  {{produce.name}}
         <p  property="offers">Offers:  {{produce.offers}}</p>
@@ -19,11 +19,45 @@ view data extracted from RDFa markup</a><br>
         <p property="brand">Sold By:  {{produce.brand.name}}</p>
       </li>
  
-    <textarea name="comment"></textarea>
-  </label>
 
 
+<form class="add_produce" method="PUT">
+Add new produce
+<input class="name" type="text" name="name" value="Produce">
+<input class="description" type="text" name="offers" value="price" />
+<input class="add" type="submit" />
+</form>
 
+
+<form method="DELETE" class="delete-produce">
+Delete Produce
+<input class="this" type="submit" />
+</form>
+
+
+<script>
+var addForm = document.querySelector('form.add_produce');
+var addButton = document.querySelector('form.add_produce input.add');
+addButton.addEventListener('click', function (event) {
+event.preventDefault();
+var request = new XMLHttpRequest();
+request.open('PUT', window.location.pathname);
+request.send(new FormData(addForm));
+{# console.log(new FormData(addForm))#}
+location.reload();
+}, false);
+
+ var delForm = document.querySelector('form.delete-produce');
+var delButton = document.querySelector('form.delete-produce input.this');
+delButton.addEventListener('click', function (event) {
+event.preventDefault();
+var request = new XMLHttpRequest();
+request.open('DELETE', window.location.pathname);
+request.send(new FormData(delForm));
+location.reload();
+{# console.log(new FormData(remForm))#}
+}, false);
+</script>
 
 
 <p><a rel="collection" href="{{ url_for('producelist') }}">List of Produce</a></p>
