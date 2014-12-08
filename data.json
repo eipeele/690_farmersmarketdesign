@@ -27,11 +27,42 @@
         "worksFor": "Talladega Produce",
         "farm": "farm0003",
         "farmLocation": {
-            "street_address": {
-                "type=string": "227 Sugar Snap Street",
-                "city": "Pittsboro",
-                "state": "NC"
-            }
+            "street_address": "227 Sugar Snap Street",
+            "city": "Pittsboro",
+            "state": "NC"
+        }
+    },
+    "frm8nl": {
+        "name": "Sarah Brown",
+        "jobTitle": "Farmer",
+        "worksFor": "Maple Ridge Produce",
+        "farm": "farm0004",
+        "farmLocation": {
+            "street_address": "145 Great Produce Way",
+            "city": "Chapel Hill",
+            "state": "NC"
+        }
+    },
+    "frm3ik": {
+        "name": "Paul Green",
+        "jobTitle": "Farmer",
+        "worksFor": "Bass Farms",
+        "farm": "farm0005",
+        "farmLocation": {
+            "street_address": "909 Green Bean Drive",
+            "city": "Hillsborough",
+            "state": "NC"
+        }
+    },
+    "frm2ui": {
+        "name": "Laura Red",
+        "jobTitle": "Farmer",
+        "worksFor": "Red's Family Produce",
+        "farm": "farm006",
+        "farmLocation": {
+            "street_address": "357 Red Apple Lane",
+            "city": "Rock Hill",
+            "state": "SC"
         }
     }
 }
