@@ -9,17 +9,55 @@ view data extracted from RDFa markup</a><br>
 
 <h1 property="name">{{ event.name }}</h1>  
 
-  <label>Event Info<br>
+  <h2>Event Info</h2>
       <li property="name">Name:  {{event.name}}
         <p  property="startDate">Start Date:  {{event.startDate}}</p>
         <p propery="organizer">Organizer:  {{event.organizer}}</p>
       </li>
-    <textarea name="comment"></textarea>
-  </label>
+
+
+<form class="add_event" method="PUT">
+Add new event
+<input class="name" type="text" name="name" value="Event">
+<input class="description" type="text" name="startDate" value="Date" />
+<input class="add" type="submit" />
+</form>
+
+
+<form method="DELETE" class="delete-event">
+Delete Produce
+<input class="this" type="submit" />
+</form>
+
+
+<script>
+var addForm = document.querySelector('form.add_event');
+var addButton = document.querySelector('form.add_event input.add');
+addButton.addEventListener('click', function (event) {
+event.preventDefault();
+var request = new XMLHttpRequest();
+request.open('PUT', window.location.pathname);
+request.send(new FormData(addForm));
+{# console.log(new FormData(addForm))#}
+location.reload();
+}, false);
+
+ var delForm = document.querySelector('form.delete-event');
+var delButton = document.querySelector('form.delete-event input.this');
+delButton.addEventListener('click', function (event) {
+event.preventDefault();
+var request = new XMLHttpRequest();
+request.open('DELETE', window.location.pathname);
+request.send(new FormData(delForm));
+location.reload();
+{# console.log(new FormData(remForm))#}
+}, false);
+</script> 
+ 
 
 
 
 
 
-<p><a rel="collection" href="{{ url_for('eventlist') }}">List of Events</a></p>
+<h3><a rel="collection" href="{{ url_for('eventlist') }}">List of Events</a></h3>
 </body>
