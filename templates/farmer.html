@@ -9,20 +9,53 @@ view data extracted from RDFa markup</a><br>
 
 <h1 property="name">{{ farmer.name }}</h1>  
 
-  <label>Farmer Info<br>
+  <h2>Farmer Info</h2>
       <li>
         <p property="worksFor">Farm Name:  {{farmer.worksFor}}</p>
         <p propery="location">Farm Location:  {{farmer.farmLocation.street_address}},
         <propery="location">{{farmer.farmLocation.city}},
         <propery="location">{{farmer.farmLocation.state}}</p>
       </li>
-    <textarea name="comment"></textarea>
-  </label>
+  
 
+<form method="PATCH" class="update-farmer">
+Update Farmer
+<input class="name" type="text" name="name" value="Farmer Name" />
+<input class="description" type="text" name="worksFor" value="Farm Name" />
+<input class="add" type="submit" value="Update your listing" />
+</form>
 
+<form method="DELETE" class="delete-farmer">
+Delete Farmer
+<input class="this" type="submit" />
+</form>
+  
 
+<script>
+var addForm = document.querySelector('form.update-farmer');
+var addButton = document.querySelector('form.update-farmer input.add');
+addButton.addEventListener('click', function (event) {
+event.preventDefault();
+var request = new XMLHttpRequest();
+request.open('PATCH', window.location.pathname);
+request.send(new FormData(addForm));
+{# console.log(new FormData(addForm))#}
+location.reload();
+}, false);
 
+ var delForm = document.querySelector('form.delete-farmer');
+var delButton = document.querySelector('form.delete-farmer input.this');
+delButton.addEventListener('click', function (event) {
+event.preventDefault();
+var request = new XMLHttpRequest();
+request.open('DELETE', window.location.pathname);
+request.send(new FormData(delForm));
+location.reload();
+{# console.log(new FormData(remForm))#}
+}, false);
+</script>
 
+  
 <p><a rel="collection" href="{{ url_for('farmerlist') }}">List of Farmers</a></p>
 <p><a rel="collection" href="{{ url_for('producelist') }}">List of Produce</a></p>
 </body>
