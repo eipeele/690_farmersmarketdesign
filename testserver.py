@@ -220,7 +220,7 @@ class FarmerList(Resource):
                 filter_and_sort_farmers(
                    q=query['q'], sort_by=query['sort-by'])), 200)
 
-    def post(self):
+    def put(self):
         farmer = new_farmer_parser.parse_args()
         farmer['name'] = name
         farmer['worksFor'] = worksFor
@@ -237,7 +237,7 @@ class ProduceList(Resource):
                 filter_and_sort_produces(
                    q=query['q'], sort_by=query['sort-by'])), 200)
 
-    def post(self):
+    def put(self):
         produce = new_produce_parser.parse_args()
         produce['name'] = name
         produce['offers'] = offers
@@ -275,7 +275,7 @@ class EventList(Resource):
                 filter_and_sort_events(
                    q=query['q'], sort_by=query['sort-by'])), 200)
 
-    def post(self):
+    def put(self):
         event = new_event_parser.parse_args()
         event['name'] = name
         event['startDate'] = startDate
