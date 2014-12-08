@@ -46,3 +46,16 @@ Done in fulfillment of assignment 3 for INLS 690.
   *create-form*:  Used to describe the outbound link as one leading to a form in which information will be inputted.
   
   *anchor*:  Used to describe the outbound link as one leading to a hashed anchor tag within another page.
+  
+  In order to run this, you will need to do the follow:
+  -Install [Python](https://www.python.org/)
+  
+  -Install [Flask](http://flask.pocoo.org/docs/0.10/installation/#installation) and [Flask-RESTful](http://flask-restful.readthedocs.org/en/latest/installation.html) (Instructions are included on the respective webpages)
+  
+-Download our [API](https://github.com/eipeele/690_farmersmarketdesign/archive/master.zip)
+
+-Ensure that you have the following: 6 templates, 4 JSON files, 1 testserver.py 
+
+-Run python testserver.py
+
+-Add, delete, and modify different attributes via [Chrome](http://www.google.com/chrome/)
