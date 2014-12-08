@@ -1,6 +1,8 @@
 <!doctype html>
 <link rel="alternate" type="application/json" href="{{ request.path }}.json">
-<title>List of Produce</title>
+<body>
+  <title>List of Produce</title>
+
 
 
 <a href="{{ url_for('producelist') }}?sort-by=name">sort by name</a>
@@ -13,30 +15,41 @@
   <input class="query" type="submit" value="search">
 </form>
 
+<h2>List of Produce</h2>
 <ol>
   {% for produce_id, produce in produces %}
   <li resource="{{ url_for('produce', produce_id=produce_id, _external=True) }}"
       vocab="http://schema.org/"
       typeof="Product">
     
-    <a href="{{ url_for('produce', produce_id=produce_id) }}">
+    <a rel="collection" href="{{ url_for('produce', produce_id=produce_id) }}">
       <span property="name">{{ produce.name }}</span>,
-      <span property="workFor">{{ produce.itemCondition }}</span>
+      <span property="itemCondition">{{ produce.itemCondition }}</span>
     </a>
   </li>
   {% endfor %}
 </ol>
 
-<form class="helprequest-editor" action="{{ url_for('farmerlist') }}" method="post">
-  <label>from
-    <input name="from" type="text">
-  </label>
-  <br>
-  <label>title
-    <input name="title" type="text">
-  </label>
-  <br>
-  <textarea name="description"></textarea>
-  <br>  
-  <input class="create" type="submit" value="create new request">
+<form class="add_produce" method="POST">
+Add new produce
+<input class="name" type="text" name="name" value="Produce">
+<input class="description" type="text" name="offers" value="price" />
+<input class="add" type="submit" />
 </form>
+
+
+<script>
+var addForm = document.querySelector('form.add_produce');
+var addButton = document.querySelector('form.add_produce input.add');
+addButton.addEventListener('click', function (event) {
+event.preventDefault();
+var request = new XMLHttpRequest();
+request.open('POST', window.location.pathname);
+request.send(new FormData(addForm));
+{# console.log(new FormData(addForm))#}
+location.reload();
+}, false);
+</script>
+
+<h3>Want to see our Farmers!  Look <a rel="collection" href="{{ url_for('farmerlist') }}">here</a>!</h3>
+</body>
