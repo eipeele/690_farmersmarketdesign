@@ -3,7 +3,7 @@
 <title>List of Farmers</title>
 
 
-<a href="{{ url_for('farmerlist') }}?sort-by=name">sort by name</a>
+<a rel="collection" href="{{ url_for('farmerlist') }}?sort-by=name">sort by name</a>
 
 <form class="search" method="get">
   <input name="q" type="text" value="{{ request.args["q"] }}">
@@ -15,14 +15,12 @@
 
 <ol>
   {% for farmer_id, farmer in farmers %}
-  <li itemscope
-      itemid="{{ url_for('farmer', farmer_id=farmer_id, _external=True) }}"
-      resource="{{ url_for('farmer', farmer_id=farmer_id, _external=True) }}"
+  <li resource="{{ url_for('farmer', farmer_id=farmer_id, _external=True) }}"
       vocab="http://schema.org/"
       typeof="Person">
     
-    <a href="{{ url_for('farmer', farmer_id=farmer_id) }}">
-      <span itemprop="name" property="name">{{ farmer.name }}</span>
+    <a rel="item" href="{{ url_for('farmer', farmer_id=farmer_id) }}">
+      <span property="name">{{ farmer.name }}</span>
     </a>
   </li>
   {% endfor %}
@@ -33,10 +31,12 @@
 <h3>We also have events.  To see any upcoming events, please click <a rel="collection" href="{{ url_for('eventlist') }}">here</a>!</h3>
 
 <h2 property="name">Farmer Input</h2>
-<form class="add_farmer" method="PUT">
-Add New Farmer
-<input class="name" type="text" name="name" value="Farmer">
-<input class="description" type="text" name="worksFor" value="Farm Name" />
+<form class="add_farmer" method="POST">
+Add Farmer Listing
+<input class="name" type="text" name="name" value="name">
+<input class="description" type="text" name="jobTitle" value="title"/>
+<input class="description" type="text" name="worksFor" value="farm name"/>
+<input class="description" type="text" name="farmLocation" value="farm address"/>
 <input class="add" type="submit" />
 </form>
 
@@ -46,7 +46,7 @@ var addButton = document.querySelector('form.add_farmer input.add');
 addButton.addEventListener('click', function (event) {
 event.preventDefault();
 var request = new XMLHttpRequest();
-request.open('PUT', window.location.pathname);
+request.open('POST', window.location.pathname);
 request.send(new FormData(addForm));
 {# console.log(new FormData(addForm))#}
 location.reload();
