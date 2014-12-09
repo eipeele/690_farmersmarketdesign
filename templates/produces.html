@@ -1,6 +1,6 @@
 <!doctype html>
 <link rel="alternate" type="application/json" href="{{ request.path }}.json">
-<body>
+<body about="{{ url_for('producelist') }}">
   <title>List of Produce</title>
 
 
@@ -18,11 +18,11 @@
 <h2>List of Produce</h2>
 <ol>
   {% for produce_id, produce in produces %}
-  <li resource="{{ url_for('produce', produce_id=produce_id, _external=True) }}"
+  <li rel="item" resource="{{ url_for('produce', produce_id=produce_id, _external=True) }}"
       vocab="http://schema.org/"
       typeof="Product">
     
-    <a rel="collection" href="{{ url_for('produce', produce_id=produce_id) }}">
+    <a href="{{ url_for('produce', produce_id=produce_id) }}">
       <span property="name">{{ produce.name }}</span>,
       <span property="itemCondition">{{ produce.itemCondition }}</span>
     </a>
