@@ -110,10 +110,13 @@ for arg in ['name', 'worksFor']:
         help="'{}' is a required value".format(arg))
 
 new_produce_parser = reqparse.RequestParser()
-for arg in ['name', 'offers', 'releaseDate', 'itemCondition', 'sale']:
+for arg in ['name', 'offers', 'itemCondition']:
     new_produce_parser.add_argument(
         arg, type=nonempty_string, required=True,
         help="'{}' is a required value".format(arg))
+for arg in ['releaseDate', 'sale']:
+    new_produce_parser.add_argument(
+        arg, type=str, required=False)
 
 new_event_parser = reqparse.RequestParser()
 for arg in ['name', 'startDate']:
