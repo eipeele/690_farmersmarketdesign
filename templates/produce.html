@@ -44,26 +44,32 @@ Delete Produce
 
 
 <script>
+function patchCompleted() {
+   window.location.reload(true);
+}
+
 var addForm = document.querySelector('form.update-produce');
 var addButton = document.querySelector('form.update-produce input.add');
 addButton.addEventListener('click', function (event) {
-event.preventDefault();
-var request = new XMLHttpRequest();
-request.open('PATCH', window.location.pathname);
-request.send(new FormData(addForm));
-{# console.log(new FormData(addForm))#}
-//location.reload();
+  event.preventDefault();
+  var request = new XMLHttpRequest();
+  request.addEventListener("load", patchCompleted, false);
+  request.open('PATCH', window.location.pathname);
+  request.send(new FormData(addForm));
 }, false);
 
- var delForm = document.querySelector('form.delete-produce');
+function deleteCompleted() {
+   window.location.href = '{{ url_for('producelist') }}';
+}
+
+var delForm = document.querySelector('form.delete-produce');
 var delButton = document.querySelector('form.delete-produce input.this');
 delButton.addEventListener('click', function (event) {
-event.preventDefault();
-var request = new XMLHttpRequest();
-request.open('DELETE', window.location.pathname);
-request.send(new FormData(delForm));
-//location.reload();
-{# console.log(new FormData(remForm))#}
+  event.preventDefault();
+  var request = new XMLHttpRequest();
+  request.addEventListener("load", deleteCompleted, false);
+  request.open('DELETE', window.location.pathname);
+  request.send(new FormData(delForm));
 }, false);
 </script>
 
