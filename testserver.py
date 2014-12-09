@@ -247,6 +247,7 @@ class ProduceList(Resource):
 
     def post(self):
         produce = new_produce_parser.parse_args()
+        data_produce[generate_id()] = produce
         return make_response(
             render_produce_list_as_html(
                 filter_and_sort_produce()), 201)
