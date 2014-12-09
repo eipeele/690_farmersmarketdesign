@@ -38,18 +38,6 @@ Add new produce
 </form>
 
 
-<script>
-var addForm = document.querySelector('form.add_produce');
-var addButton = document.querySelector('form.add_produce input.add');
-addButton.addEventListener('click', function (event) {
-event.preventDefault();
-var request = new XMLHttpRequest();
-request.open('POST', window.location.pathname);
-request.send(new FormData(addForm));
-{# console.log(new FormData(addForm))#}
-location.reload();
-}, false);
-</script>
 
 <h3>Want to see our Farmers!  Look <a rel="collection" href="{{ url_for('farmerlist') }}">here</a>!</h3>
 </body>
