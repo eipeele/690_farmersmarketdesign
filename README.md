@@ -57,7 +57,7 @@ The following class and rel attributes are used throughout this framework to hel
   
   -Install [Flask](http://flask.pocoo.org/docs/0.10/installation/#installation) and [Flask-RESTful](http://flask-restful.readthedocs.org/en/latest/installation.html) (Instructions are included on the respective webpages)
   
--Download our [API](https://github.com/eipeele/690_oer-s-market/archive/master.zip)
+-Download our [API](https://github.com/eipeele/OER-s-Market/archive/master.zip)
 
 -Ensure that you have the following: 6 templates, 3 JSON files, 1 testserver.py 
 
