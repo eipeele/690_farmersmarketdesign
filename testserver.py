@@ -52,7 +52,7 @@ def filter_and_sort_produces(q='', sort_by='name'):
     filtered_produce = filter(filter_function,
                                   data_produce.items())
     key_function = lambda x: x[1][sort_by]
-    return sorted(filtered_produce, key=key_function, reverse=True)
+    return sorted(filtered_produce, key=key_function)
 
 def filter_and_sort_events(q='', sort_by='name'):
     filter_function = lambda x: q.lower() in (
@@ -110,10 +110,13 @@ for arg in ['name', 'worksFor']:
         help="'{}' is a required value".format(arg))
 
 new_produce_parser = reqparse.RequestParser()
-for arg in ['name', 'offers', 'releaseDate', 'itemCondition', 'sale']:
+for arg in ['name', 'offers', 'itemCondition']:
     new_produce_parser.add_argument(
         arg, type=nonempty_string, required=True,
         help="'{}' is a required value".format(arg))
+for arg in ['releaseDate', 'sale']:
+    new_produce_parser.add_argument(
+        arg, type=str, required=False)
 
 new_event_parser = reqparse.RequestParser()
 for arg in ['name', 'startDate']:
@@ -132,13 +135,9 @@ update_farmer_parser.add_argument(
 
 update_produce_parser = reqparse.RequestParser()
 update_produce_parser.add_argument(
-    'name', type=str, default='')
-update_produce_parser.add_argument(
-    'offers', type=str, default='')
+    'offers', type=nonempty_string, required=True)
 update_produce_parser.add_argument(
     'releaseDate', type=str, default='')
-update_produce_parser.add_argument(
-    'itemCondition', type=str, default='')
 update_produce_parser.add_argument(
     'sale', type=str, default='')
 
@@ -196,10 +195,7 @@ class Produce(Resource):
         error_if_produce_not_found(produce_id)
         produce = data_produce[produce_id]
         update = update_produce_parser.parse_args()
-        print update
-        produce['name'] = update['name']
-        if len(update['offers'].strip()) > 0:
-            produce['offers'] = update['offers']
+        produce.update(update)
         return make_response(
             render_produce_as_html(produce), 200)
 
@@ -242,14 +238,12 @@ class ProduceList(Resource):
                 filter_and_sort_produces(
                    q=query['q'], sort_by=query['sort-by'])), 200)
 
-    def put(self):
+    def post(self):
         produce = new_produce_parser.parse_args()
-        produce['name'] = name
-        produce['offers'] = offers
-        produce[generate_id()] = produce
+        data_produce[generate_id()] = produce
         return make_response(
             render_produce_list_as_html(
-                filter_and_sort_produce()), 201)
+                filter_and_sort_produces()), 201)
 
 class FarmerListAsJSON(Resource):
     def get(self):

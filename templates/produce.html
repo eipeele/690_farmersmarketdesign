@@ -12,19 +12,27 @@ view data extracted from RDFa markup</a><br>
   <h2>Produce Info</h2>
 
       <li>
-        <p  property="offers">Offers:  {{produce.offers}}</p>
-        <p property="releaseDate">Farmed Date:   {{produce.releaseDate}}</p>
-        <p property="itemCondition">Item Condition:  {{produce.itemCondition}}</p>
-        <p property="sale">On Sale:  {{produce.sale}}</p>
-        <p property="brand">Sold By:  {{produce.brand.name}}</p>
+        Offers:  <p  property="offers">{{produce.offers}}</p>
+        Farmed Date:   <p property="releaseDate">{{produce.releaseDate}}</p>
+        Item Condition:  <p property="itemCondition">{{produce.itemCondition}}</p>
+        On Sale:  <p property="sale">{{produce.sale}}</p>
+        Sold By:  <p property="brand">{{produce.brand.name}}</p>
       </li>
  
 
 
 <form class="update-produce" method="PATCH">
 Update produce
-<input class="name" type="text" name="name" value="Produce">
-<input class="description" type="text" name="offers" value="price" />
+<br>  
+On sale? <select name="sale">
+  <option>no</option>
+  <option {% if produce.sale == "yes" %}selected{% endif %}>yes</option>
+</select>
+<br>
+Date farmed <input type="text" name="releaseDate" value="{{ produce.releaseDate }}">
+<br>
+Price: <input class="description" type="text" name="offers" value="{{ produce.offers }}" />
+<br>
 <input class="add" type="submit" />
 </form>
 
@@ -36,26 +44,32 @@ Delete Produce
 
 
 <script>
+function patchCompleted() {
+   window.location.reload(true);
+}
+
 var addForm = document.querySelector('form.update-produce');
 var addButton = document.querySelector('form.update-produce input.add');
 addButton.addEventListener('click', function (event) {
-event.preventDefault();
-var request = new XMLHttpRequest();
-request.open('PATCH', window.location.pathname);
-request.send(new FormData(addForm));
-{# console.log(new FormData(addForm))#}
-//location.reload();
+  event.preventDefault();
+  var request = new XMLHttpRequest();
+  request.addEventListener("load", patchCompleted, false);
+  request.open('PATCH', window.location.pathname);
+  request.send(new FormData(addForm));
 }, false);
 
- var delForm = document.querySelector('form.delete-produce');
+function deleteCompleted() {
+   window.location.href = '{{ url_for('producelist') }}';
+}
+
+var delForm = document.querySelector('form.delete-produce');
 var delButton = document.querySelector('form.delete-produce input.this');
 delButton.addEventListener('click', function (event) {
-event.preventDefault();
-var request = new XMLHttpRequest();
-request.open('DELETE', window.location.pathname);
-request.send(new FormData(delForm));
-//location.reload();
-{# console.log(new FormData(remForm))#}
+  event.preventDefault();
+  var request = new XMLHttpRequest();
+  request.addEventListener("load", deleteCompleted, false);
+  request.open('DELETE', window.location.pathname);
+  request.send(new FormData(delForm));
 }, false);
 </script>
 
