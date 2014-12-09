@@ -48,7 +48,7 @@ def filter_and_sort_farmers(q='', sort_by='name'):
 
 def filter_and_sort_produces(q='', sort_by='name'):
     filter_function = lambda x: q.lower() in (
-        x[1]['releaseDate'] + x[1]['itemCondition']).lower()
+        x[1]['name'] + x[1]['itemCondition']).lower()
     filtered_produce = filter(filter_function,
                                   data_produce.items())
     key_function = lambda x: x[1][sort_by]
