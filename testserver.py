@@ -14,7 +14,7 @@ with open('data.json') as data:
     data = json.load(data)
 with open('data_produce.json') as data_produce:
     data_produce = json.load(data_produce)
-with open('event.json') as event:
+with open('data_event.json') as event:
     event = json.load(event)        
 
 #
@@ -116,7 +116,7 @@ for arg in ['name', 'offers', 'releaseDate', 'itemCondition', 'sale']:
         help="'{}' is a required value".format(arg))
 
 new_event_parser = reqparse.RequestParser()
-for arg in ['name', 'startDate', 'organizer']:
+for arg in ['name', 'startDate']:
     new_event_parser.add_argument(
         arg, type=nonempty_string, required=True,
         help="'{}' is a required value".format(arg))
@@ -147,8 +147,6 @@ update_event_parser.add_argument(
     'name', type=str, default='')
 update_event_parser.add_argument(
     'startDate', type=str, default='')
-update_event_parser.add_argument(
-    'organizer', type=str, default='')
 
 #
 # specify the parameters for filtering and sorting help requests
@@ -210,7 +208,7 @@ class Produce(Resource):
         produce = data_produce[produce_id]
         del data_produce[produce_id]
         return make_response(
-        render_farmer_as_html(produce), 204)
+        render_produce_as_html(produce), 204)
 
 class FarmerAsJSON(Resource):
     def get(self, farmer_id):
@@ -227,14 +225,14 @@ class FarmerList(Resource):
                 filter_and_sort_farmers(
                    q=query['q'], sort_by=query['sort-by'])), 200)
 
-    def put(self):
+    def post(self):
         farmer = new_farmer_parser.parse_args()
         farmer['name'] = name
         farmer['worksFor'] = worksFor
-        farmer[generate_id()] = farmer
+        farmers[generate_id()] = farmer
         return make_response(
-            render_farmer_list_as_html(
-                filter_and_sort_farmer()), 201)
+        render_farmer_list_as_html(
+        filter_and_sort_farmers()), 201)
 
 class ProduceList(Resource):
     def get(self):
@@ -266,7 +264,7 @@ class Event(Resource):
 
     def patch(self, event_id):
         error_if_event_not_found(event_id)
-        event = event[event_id]
+        event = data_event[event_id]
         update = update_event_parser.parse_args()
         print update
         event['name'] = update['name']
@@ -274,6 +272,13 @@ class Event(Resource):
             event['startDate'] = update['startDate']
         return make_response(
             render_event_as_html(event), 200)
+
+    def delete(self, event_id):
+        error_if_event_not_found(event_id)
+        event = data_event[event_id]
+        del data_event[event_id]
+        return make_response(
+        render_event_as_html(event), 204)    
 
 class EventList(Resource):
     def get(self):
