@@ -1,50 +1,64 @@
-{
-    "pro1ap": {
-        "name": "Granny Smith Apple",
-        "offers": "$10.00/box",
-        "releaseDate": "2014-01-01",
-        "itemCondition": "Organic",
-        "sale": "no",
-        "brand": {"name": "Ricky Bobby"}
-    },
-    "pro1fj": {
-        "name": "Red Fiji Apple",
-        "offers": "$9.00/box",
-        "releaseDate": "2014-03-01",
-        "itemCondition": "Not-Organic",
-        "sale": "yes",
-        "brand": {"name": "Joe Brown"}
-    },
-    "pro7on": {
-        "name": "Vidalia Sweet Onion",
-        "offers": "$4.00/bag",
-        "releaseDate": "2014-02-01",
-        "itemCondition": "Not-Organic",
-        "sale": "yes",
-        "brand": {"name": "Paddy McGilly"}
-    },
-    "pro9as": {
-        "name": "Asparagus",
-        "offers": "$3.00/bundle",
-        "releaseDate": "2014-02-14",
-        "itemCondition": "Organic",
-        "sale": "no",
-        "brand": {"name": "Laura Red"}
-    },
-    "pro4jd": {
-        "name": "Cranberries",
-        "offers": "$2.00/pound",
-        "releaseDate": "2014-03-02",
-        "itemCondition": "Organic",
-        "sale": "no",
-        "brand": {"name": "Paul Green"}
-    },
-    "pro2le": {
-        "name": "Lemons",
-        "offers": "$1.00/2",
-        "releaseDate": "2014-02-13",
-        "itemCondition": "Not-Organic",
-        "sale": "no",
-        "brand": {"name": "Sarah Brown"}
-    }
-}
+<!doctype html>
+<link rel="alternate" type="application/json" href="{{ request.path }}.json">
+
+<body           vocab="http://schema.org/"
+                typeof="Product">
+
+<a href="http://www.w3.org/2012/pyRdfa/extract?uri=referer">
+view data extracted from RDFa markup</a><br>
+
+<h1 property="name">{{ produce.name }}</h1>  
+
+  <h2>Produce Info</h2>
+
+      <li>
+        <p  property="offers">Offers:  {{produce.offers}}</p>
+        <p property="releaseDate">Farmed Date:   {{produce.releaseDate}}</p>
+        <p property="itemCondition">Item Condition:  {{produce.itemCondition}}</p>
+        <p property="sale">On Sale:  {{produce.sale}}</p>
+        <p property="brand">Sold By:  {{produce.brand.name}}</p>
+      </li>
+ 
+
+
+<form class="add_produce" method="PUT">
+Add new produce
+<input class="name" type="text" name="name" value="Produce">
+<input class="description" type="text" name="offers" value="price" />
+<input class="add" type="submit" />
+</form>
+
+
+<form method="DELETE" class="delete-produce">
+Delete Produce
+<input class="this" type="submit" />
+</form>
+
+
+<script>
+var addForm = document.querySelector('form.add_produce');
+var addButton = document.querySelector('form.add_produce input.add');
+addButton.addEventListener('click', function (event) {
+event.preventDefault();
+var request = new XMLHttpRequest();
+request.open('PATCH', window.location.pathname);
+request.send(new FormData(addForm));
+{# console.log(new FormData(addForm))#}
+
+}, false);
+
+ var delForm = document.querySelector('form.delete-produce');
+var delButton = document.querySelector('form.delete-produce input.this');
+delButton.addEventListener('click', function (event) {
+event.preventDefault();
+var request = new XMLHttpRequest();
+request.open('DELETE', window.location.pathname);
+request.send(new FormData(delForm));
+
+{# console.log(new FormData(remForm))#}
+}, false);
+</script>
+
+
+<p><a rel="collection" href="{{ url_for('producelist') }}">List of Produce</a></p>
+</body>
