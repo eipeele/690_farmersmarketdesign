@@ -250,7 +250,7 @@ class ProduceList(Resource):
         data_produce[generate_id()] = produce
         return make_response(
             render_produce_list_as_html(
-                filter_and_sort_produce()), 201)
+                filter_and_sort_produces()), 201)
 
 class FarmerListAsJSON(Resource):
     def get(self):
