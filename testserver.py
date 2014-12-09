@@ -52,7 +52,7 @@ def filter_and_sort_produces(q='', sort_by='name'):
     filtered_produce = filter(filter_function,
                                   data_produce.items())
     key_function = lambda x: x[1][sort_by]
-    return sorted(filtered_produce, key=key_function, reverse=True)
+    return sorted(filtered_produce, key=key_function)
 
 def filter_and_sort_events(q='', sort_by='name'):
     filter_function = lambda x: q.lower() in (
