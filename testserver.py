@@ -242,7 +242,7 @@ class ProduceList(Resource):
                 filter_and_sort_produces(
                    q=query['q'], sort_by=query['sort-by'])), 200)
 
-    def put(self):
+    def post(self):
         produce = new_produce_parser.parse_args()
         produce['name'] = name
         produce['offers'] = offers
