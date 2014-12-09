@@ -10,8 +10,8 @@ view data extracted from RDFa markup</a><br>
 <h1 property="name">{{ produce.name }}</h1>  
 
   <h2>Produce Info</h2>
-  </br>
-      <li property="name">Name:  {{produce.name}}
+
+      <li>
         <p  property="offers">Offers:  {{produce.offers}}</p>
         <p property="releaseDate">Farmed Date:   {{produce.releaseDate}}</p>
         <p property="itemCondition">Item Condition:  {{produce.itemCondition}}</p>
@@ -21,8 +21,8 @@ view data extracted from RDFa markup</a><br>
  
 
 
-<form class="add_produce" method="PATCH">
-Add new produce
+<form class="update-produce" method="PATCH">
+Update produce
 <input class="name" type="text" name="name" value="Produce">
 <input class="description" type="text" name="offers" value="price" />
 <input class="add" type="submit" />
@@ -36,15 +36,15 @@ Delete Produce
 
 
 <script>
-var addForm = document.querySelector('form.add_produce');
-var addButton = document.querySelector('form.add_produce input.add');
+var addForm = document.querySelector('form.update-produce');
+var addButton = document.querySelector('form.update-produce input.add');
 addButton.addEventListener('click', function (event) {
 event.preventDefault();
 var request = new XMLHttpRequest();
-request.open('PUT', window.location.pathname);
+request.open('PATCH', window.location.pathname);
 request.send(new FormData(addForm));
 {# console.log(new FormData(addForm))#}
-location.reload();
+//location.reload();
 }, false);
 
  var delForm = document.querySelector('form.delete-produce');
@@ -54,7 +54,7 @@ event.preventDefault();
 var request = new XMLHttpRequest();
 request.open('DELETE', window.location.pathname);
 request.send(new FormData(delForm));
-location.reload();
+//location.reload();
 {# console.log(new FormData(remForm))#}
 }, false);
 </script>
