@@ -40,7 +40,7 @@ def error_if_event_not_found(event_id):
 
 def filter_and_sort_farmers(q='', sort_by='name'):
    filter_function = lambda x: q.lower() in (
-        x[1]['jobTitle'] + x[1]['worksFor']).lower()
+        x[1]['name'] + x[1]['worksFor']).lower()
    filtered_farmer = filter(filter_function,
                                   data.items())
    key_function = lambda x: x[1][sort_by]
@@ -48,7 +48,7 @@ def filter_and_sort_farmers(q='', sort_by='name'):
 
 def filter_and_sort_produces(q='', sort_by='name'):
     filter_function = lambda x: q.lower() in (
-        x[1]['releaseDate'] + x[1]['itemCondition']).lower()
+        x[1]['name'] + x[1]['itemCondition']).lower()
     filtered_produce = filter(filter_function,
                                   data_produce.items())
     key_function = lambda x: x[1][sort_by]
@@ -56,11 +56,11 @@ def filter_and_sort_produces(q='', sort_by='name'):
 
 def filter_and_sort_events(q='', sort_by='name'):
     filter_function = lambda x: q.lower() in (
-        x[1]['startDate'] + x[1]['organizer']).lower()
+        x[1]['name'] + x[1]['organizer']).lower()
     filtered_event = filter(filter_function,
                                   event.items())
     key_function = lambda x: x[1][sort_by]
-    return sorted(filtered_event, key=key_function, reverse=True)    
+    return sorted(filtered_event, key=key_function, reverse=True)       
         
 def render_farmer_as_html(farmer):
    return render_template(
