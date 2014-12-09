@@ -23,8 +23,16 @@ view data extracted from RDFa markup</a><br>
 
 <form class="update-produce" method="PATCH">
 Update produce
-<input class="name" type="text" name="name" value="Produce">
-<input class="description" type="text" name="offers" value="price" />
+<br>  
+On sale? <select name="sale">
+  <option>no</option>
+  <option {% if produce.sale == "yes" %}selected{% endif %}>yes</option>
+</select>
+<br>
+Date farmed <input type="text" name="releaseDate" value="{{ produce.releaseDate }}">
+<br>
+Price: <input class="description" type="text" name="offers" value="{{ produce.offers }}" />
+<br>
 <input class="add" type="submit" />
 </form>
 

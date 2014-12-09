@@ -135,13 +135,9 @@ update_farmer_parser.add_argument(
 
 update_produce_parser = reqparse.RequestParser()
 update_produce_parser.add_argument(
-    'name', type=str, default='')
-update_produce_parser.add_argument(
-    'offers', type=str, default='')
+    'offers', type=nonempty_string, required=True)
 update_produce_parser.add_argument(
     'releaseDate', type=str, default='')
-update_produce_parser.add_argument(
-    'itemCondition', type=str, default='')
 update_produce_parser.add_argument(
     'sale', type=str, default='')
 
@@ -199,10 +195,7 @@ class Produce(Resource):
         error_if_produce_not_found(produce_id)
         produce = data_produce[produce_id]
         update = update_produce_parser.parse_args()
-        print update
-        produce['name'] = update['name']
-        if len(update['offers'].strip()) > 0:
-            produce['offers'] = update['offers']
+        produce.update(update)
         return make_response(
             render_produce_as_html(produce), 200)
 
